@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FILTERGRAPH>
+  <FILTER uid="1" x="0.60375" y="0.09423076923076923" useARA="0">
+    <PLUGIN name="Audio Input" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uniqueId="246006c0"
+            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
+            numOutputs="2" isShell="0" hasARAExtension="0" uid="246006c0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="C"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="2" x="0.25" y="0.1" useARA="0">
+    <PLUGIN name="MIDI Input" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uniqueId="a9e4f9eb"
+            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
+            numOutputs="0" isShell="0" hasARAExtension="0" uid="a9e4f9eb"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="3" x="0.62375" y="0.8961538461538462" useARA="0">
+    <PLUGIN name="Audio Output" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uniqueId="724248cb"
+            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="1"
+            numOutputs="0" isShell="0" hasARAExtension="0" uid="724248cb"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="4" x="0.25" y="0.9" useARA="0">
+    <PLUGIN name="MIDI Output" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uniqueId="9d5bbb00"
+            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
+            numOutputs="0" isShell="0" hasARAExtension="0" uid="9d5bbb00"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="6" x="0.4325" y="0.3634615384615384" useARA="0" uiLastX_Normal="289"
+          uiLastY_Normal="201" uiopen_Normal="1">
+    <PLUGIN name="AUAudioFilePlayer" format="AudioUnit" category="Generator"
+            manufacturer="Apple" version="1.6.0" file="AudioUnit:Generators/augn,afpl,appl"
+            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="190e13f6181"
+            numInputs="0" numOutputs="2" isShell="0" hasARAExtension="0"
+            uid="6163676e"/>
+    <STATE>1169.hAGaoMGcv.C1AHv.DTfAGfPBJr.Ks3xKyvUag4VclE1XzUmbkIGUjEFcg8EDarVPUAkbkMWYzAUYxMWZyQWYtQ2TzEFcksTY4c0b0IFc4AWYWYWYxMWZu4FUzkGbk8EDOXVZrUVKxUlYkIWYtMVYyQkag0VYRDFbvwFPixfFhHcCN7.DXYTZrUlSg0VYWIUYmk1atM2WPvzKV8Fa00VYy8xTo01atABTx8lZkMFcy8RS0MWZi8xTo01atMGHSEVavwVYfvTZhIWXxk2KA4VZsEFay8RPxcFHyQ2axMGbuYmKsQSXgFA0RLAEUXwEXjgWRU1Yo8laD8VYywzauAmVRU1Yo8laDEFcg8EDPjzbSUFakMFckQlTkcVZu4lVRU1Yo8laNEVakgvSP.G...........Ln5L..fA...CpNC..X...n8Vx...F...fYTBQ8+A..yCPdzBlXOAEn8Vx...F..D.................................................................cC.......InkSkcGHRU1Yo8laR2fCavwWPH2KV8Fa00VYy8xTo01atABTx8lZkMFcy8RS0MWZi8BSucVZi8RQzUlbtEFafDjbz8xTzUGYo81KTEFakMGHT8FHRUVak0lXkI2KEQWYx4VXrARPxQ2KGUWZzElbfL0ar8FHs.RQzUlbtEFafDjbz4xcgYWncPsDSPQEX7AFgjvSP.G...........xxPbFg+A..nB.........NS+9u2+G...B..........I86+d+e..v+++++2+G..D....v8+A.......................................b+e..fevnG......b2Dw.v8+A..InkSkcGHRU1Yo8laS2fCiPRIX3URyMUYrU1XzUFYFkFak8EDG9hUuwVcsU1buLUZs8laf.kbuoVYiQ2buHTXtQ1KMU2bos1KSQWcjk1auHCLx.CHCklcowVZ5EFco8lauLDZkImauIVdrAxTzUGYo81buLTZ1kFaooWXzk1atAxTzUVay8BLx.RPiI2ayMGHHUFarUGag4FYu.iMfbTcoQWXxAxTuw1atbWX1EpITKwDTTgEnfgJH7DDvA...........np7C..X....pJ+...F...J+1O..fA...nZhJX6e...D.Tx1gZn81BJ+1O..fA..A....................................................3JfNA......kn9E......PBZ4TY2AhTkcVZu4VBRDlYvwFD.HQX0claSCSLx7.IaXkQowVYfDiUFkFakAxLVYTZrUFHxfUUtQWZzwVYjA.B.jA.l.vJ.jD.QAPV.3E.vAPc.nG.6Ave.PH.MBPk.PN.lCv6.3e.ID.GAbR.nDvlAvY.mF.qBDh.iH.KBzh.fJPnBvp.yJfvCvz.NMvUCf0.KO.yCb8.XOP2C78.jOv5CH+.4S..........BD..........z...................Dj.</STATE>
+    <LAYOUT>
+      <INPUTS/>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="9" x="0.43125" y="0.5692307692307692" useARA="0" uiLastX_Normal="43"
+          uiLastY_Normal="362" uiopen_Normal="0" uiLastX_Generic="417"
+          uiLastY_Generic="56" uiopen_Generic="0">
+    <PLUGIN name="Delay" format="AudioUnit" category="Effect" manufacturer="Simon Lind"
+            version="1.0.0" file="AudioUnit:Effects/aufx,Fx1t,Manu" uniqueId="6a6c3979"
+            isInstrument="0" fileTime="0" infoUpdateTime="190e13f6181" numInputs="2"
+            numOutputs="2" isShell="0" hasARAExtension="0" uid="6a6c3979"/>
+    <STATE>381.hAGaoMGcv.C1AHv.DTfAGfPBJrvDTTgEWvUag4VclE1XzUmbkIGUjEFcgwUYrUVak4Fcs3VXsU1UyUmXzkGbkckckI2bo8laTQWdvU1WP7fZ0MVYPwVcmklaSQWXzUFUtEVakIQSg4VcOAAE..............P...yR+8C...fzLzfCQDULQISzO.QTvTURtAWczE8CRX0S0QGb0QmDFgWLzAA.RDVclg2SPbmUCISHtA...vyO30FafXWYxMWZu4VOhDiKvHBHk41XuQVZtcVOhTEUF0BNh7iOfvCTgIWXsUFckI2b9vCTAIUPMARZj0iHmEVZtIBH1EFa0UVOhzBLtHyLxXSN3PCMvTSMwbSM2fiHu3COu.UXxEVakQWYxMmO.fUUtQWZzwVYjA.B.jA.l.vJ.fC..A.R.zD.eA.Y.jF..BPg.bH.IB.i.3H.TBvk.3I.iBPo.nZ.j........HP..........fA..................DPK</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="10" x="0.6625" y="0.7057692307692308" useARA="0" uiLastX_Normal="781"
+          uiLastY_Normal="526" uiopen_Normal="1">
+    <PLUGIN name="Wave Observer" format="AudioUnit" category="Effect" manufacturer="Press Play"
+            version="1.7.0" file="AudioUnit:Effects/aufx,PPwo,PPly" uniqueId="61757d6e"
+            isInstrument="0" fileTime="0" infoUpdateTime="190e13f6181" numInputs="2"
+            numOutputs="2" isShell="0" hasARAExtension="0" uid="61757d6e"/>
+    <STATE>282.hAGaoMGcv.i0AHv.DTfAGfPBJr.CT4VXsUFWsEla0YVXiQWcxUlbTQVXzEFUzkGbkc0b0IFc4AWYWYWYxMWZu4FTR.ETrk2SPPYhmNFZg4lakwF.1Vla1UFauAWYe01ajU1WjUmbgQWZu41x+rca1tca1tMomEVZts7OUeFxtFhW4MJZ0U1x+P93Nhy3NlCos8FYkEPoyMVXrU1x+.O.......vpyg1a28EakcVYtQ1vmZWYxMWZu4ly.DvA.X6cgYWYl8lbs8UauQVYeQVcxEFco8laK+S1YlYlYlolRDVclgmDPA0cuIA.Ab..HTgFmvRL4DjPG483nC.......DP..........z....................P6</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <CONNECTION srcFilter="6" srcChannel="0" dstFilter="9" dstChannel="0"/>
+  <CONNECTION srcFilter="6" srcChannel="1" dstFilter="9" dstChannel="1"/>
+  <CONNECTION srcFilter="9" srcChannel="0" dstFilter="3" dstChannel="0"/>
+  <CONNECTION srcFilter="9" srcChannel="1" dstFilter="3" dstChannel="1"/>
+  <CONNECTION srcFilter="9" srcChannel="0" dstFilter="10" dstChannel="0"/>
+  <CONNECTION srcFilter="9" srcChannel="1" dstFilter="10" dstChannel="1"/>
+</FILTERGRAPH>
