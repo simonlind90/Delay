@@ -15,7 +15,9 @@ DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    addAndMakeVisible(gainKnob);
+    
+    setSize (500, 330);
 }
 
 DelayAudioProcessorEditor::~DelayAudioProcessorEditor()
@@ -25,16 +27,12 @@ DelayAudioProcessorEditor::~DelayAudioProcessorEditor()
 //==============================================================================
 void DelayAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (juce::Colours::blue);
-
-    g.setColour (juce::Colours::white);
-    g.setFont (juce::FontOptions (40.0f));
-    g.drawFittedText ("Simon Lind - Delay!", getLocalBounds(), juce::Justification::centred, 1);
+    g.fillAll(juce::Colours::darkgrey);
 }
 
 void DelayAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+    gainKnob.setTopLeftPosition(215, 120);
 }

@@ -10,6 +10,8 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "Parameters.h"
+#include "RotaryKnob.h"
 
 //==============================================================================
 /**
@@ -28,6 +30,8 @@ private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     DelayAudioProcessor& audioProcessor;
+    
+    RotaryKnob gainKnob { "Gain", audioProcessor.apvts, gainParamID };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelayAudioProcessorEditor)
 };

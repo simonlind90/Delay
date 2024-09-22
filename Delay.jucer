@@ -5,6 +5,8 @@
               companyWebsite="https://www.EternalArt.se">
   <MAINGROUP id="ZurFCL" name="Delay">
     <GROUP id="{5F4C6284-5714-9546-EA1E-56B608F04C06}" name="Source">
+      <FILE id="yeARDO" name="RotaryKnob.cpp" compile="1" resource="0" file="Source/RotaryKnob.cpp"/>
+      <FILE id="q2opdE" name="RotaryKnob.h" compile="0" resource="0" file="Source/RotaryKnob.h"/>
       <FILE id="ZEgG01" name="Parameters.cpp" compile="1" resource="0" file="Source/Parameters.cpp"/>
       <FILE id="K2Dz17" name="Parameters.h" compile="0" resource="0" file="Source/Parameters.h"/>
       <FILE id="D3v5Lq" name="PluginProcessor.cpp" compile="1" resource="0"
