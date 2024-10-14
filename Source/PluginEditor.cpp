@@ -40,7 +40,7 @@ DelayAudioProcessorEditor::~DelayAudioProcessorEditor()
 //==============================================================================
 void DelayAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::darkgrey);
+    g.fillAll(Colors::background);
 }
 
 void DelayAudioProcessorEditor::resized()

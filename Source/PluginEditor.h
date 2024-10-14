@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 #include "Parameters.h"
 #include "RotaryKnob.h"
+#include "LookAndFeel.h"
 
 //==============================================================================
 /**
