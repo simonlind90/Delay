@@ -30,3 +30,20 @@ namespace Colors {
         const juce::Colour caret { 255, 255, 255 };
     }
 }
+
+class RotaryKnobLookAndFeel: public juce::LookAndFeel_V4 {
+public:
+    RotaryKnobLookAndFeel();
+    static RotaryKnobLookAndFeel* get() {
+        static RotaryKnobLookAndFeel instance;
+        return &instance;
+    }
+    
+    void drawRotarySlider(juce::Graphics& g, 
+                          int x, int y,
+                          int width, int height,
+                          float sliderPos, float rotaryStartAngle, float rotaryEndAngle,
+                          juce::Slider& slider) override;
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(RotaryKnobLookAndFeel)
+};
