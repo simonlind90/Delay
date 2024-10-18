@@ -4,6 +4,9 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="Simon Lind"
               companyWebsite="https://www.EternalArt.se">
   <MAINGROUP id="ZurFCL" name="Delay">
+    <GROUP id="{932197B2-7C39-87B5-687A-9AB8DE5768F6}" name="Assets">
+      <FILE id="tPyX6N" name="Lato-Medium.ttf" compile="0" resource="1" file="../../../Audio Programming/getting-started-book/Resources/Lato-Medium.ttf"/>
+    </GROUP>
     <GROUP id="{5F4C6284-5714-9546-EA1E-56B608F04C06}" name="Source">
       <FILE id="CS1i0d" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/LookAndFeel.cpp"/>
       <FILE id="k9wlYa" name="LookAndFeel.h" compile="0" resource="0" file="Source/LookAndFeel.h"/>
