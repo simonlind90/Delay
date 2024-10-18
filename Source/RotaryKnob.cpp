@@ -29,6 +29,9 @@ RotaryKnob::RotaryKnob(const juce::String& text,
     label.attachToComponent(&slider, false);
     addAndMakeVisible(label);
     
+    float pi = juce::MathConstants<float>::pi;
+    slider.setRotaryParameters(1.25f * pi, 2.75f * pi, true);
+    
     setSize(70, 110);
     
     setLookAndFeel(RotaryKnobLookAndFeel::get());
