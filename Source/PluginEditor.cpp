@@ -26,6 +26,7 @@ DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
     
     outputGroup.setText("Output");
     outputGroup.setTextLabelPosition(juce::Justification::horizontallyCentred);
+    // To override default color: gainKnob.slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::green);
     outputGroup.addAndMakeVisible(gainKnob);
     outputGroup.addAndMakeVisible(mixKnob);
     addAndMakeVisible(outputGroup);

@@ -15,9 +15,11 @@
 //==============================================================================
 RotaryKnob::RotaryKnob(const juce::String& text,
                        juce::AudioProcessorValueTreeState& apvts,
-                       const juce::ParameterID& parameterID): attachment(apvts, parameterID.getParamID(), slider) {
+                       const juce::ParameterID& parameterID,
+                       bool drawFromMiddle): attachment(apvts, parameterID.getParamID(), slider) {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    slider.getProperties().set("drawFromMiddle", drawFromMiddle);
     slider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     slider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 70, 16);
     slider.setBounds(0, 0, 70, 86);

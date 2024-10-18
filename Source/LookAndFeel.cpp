@@ -13,6 +13,7 @@
 RotaryKnobLookAndFeel::RotaryKnobLookAndFeel() {
     setColour(juce::Label::textColourId, Colors::Knob::label);
     setColour(juce::Slider::textBoxTextColourId, Colors::Knob::label);
+    setColour(juce::Slider::rotarySliderFillColourId, Colors::Knob::trackActive);
 }
 
 void RotaryKnobLookAndFeel::drawRotarySlider(juce::Graphics& g, int x, int y, int width, [[maybe_unused]] int height,
@@ -52,8 +53,26 @@ void RotaryKnobLookAndFeel::drawRotarySlider(juce::Graphics& g, int x, int y, in
     g.setColour(Colors::Knob::trackBackground);
     g.strokePath(backgroundArc, strokeType);
     
-    auto dialRadius = innerRect.getHeight() / 2.0f - lineWidth;
     auto toAngle = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
+    if (slider.isEnabled()) {
+        float fromAngle = rotaryStartAngle;
+        if (slider.getProperties()["drawFromMiddle"]) {
+            fromAngle += (rotaryEndAngle - rotaryStartAngle) / 2.0f;
+        }
+        juce::Path valueArc;
+        valueArc.addCentredArc(center.x, 
+                               center.y,
+                               arcRadius,
+                               arcRadius,
+                               0.0f,
+                               fromAngle,
+                               toAngle,
+                               true);
+        g.setColour(slider.findColour(juce::Slider::rotarySliderFillColourId));
+        g.strokePath(valueArc, strokeType);
+    }
+    
+    auto dialRadius = innerRect.getHeight() / 2.0f - lineWidth;
     
     juce::Point<float> dialStart(center.x + 10.0f * std::sin(toAngle),
                                  center.y - 10.0f * std::cos(toAngle));
