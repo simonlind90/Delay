@@ -97,3 +97,12 @@ void RotaryKnobLookAndFeel::drawRotarySlider(juce::Graphics& g, int x, int y, in
     g.setColour(Colors::Knob::dial);
     g.strokePath(dialPath, strokeType);
 }
+
+MainLookAndFeel::MainLookAndFeel() {
+    setColour(juce::GroupComponent::textColourId, Colors::Group::label);
+    setColour(juce::GroupComponent::outlineColourId, Colors::Group::outline);
+}
+
+juce::Font MainLookAndFeel::getLabelFont([[maybe_unused]] juce::Label& label) {
+    return Fonts::getFont();
+}

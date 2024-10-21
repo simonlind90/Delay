@@ -29,6 +29,11 @@ namespace Colors {
         const juce::Colour value { 240, 240, 240 };
         const juce::Colour caret { 255, 255, 255 };
     }
+
+    namespace Group {
+        const juce::Colour label { 160, 155, 150 };
+        const juce::Colour outline { 235, 230, 225 };
+    }
 }
 
 class Fonts {
@@ -57,4 +62,12 @@ public:
 private:
     juce::DropShadow dropShadow { Colors::Knob::dropShadow, 6, { 0, 3 } };
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(RotaryKnobLookAndFeel)
+};
+
+class MainLookAndFeel: public juce::LookAndFeel_V4 {
+public:
+    MainLookAndFeel();
+    juce::Font getLabelFont(juce::Label&) override;
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainLookAndFeel)
 };
