@@ -15,7 +15,7 @@ DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setLookAndFeel(new MainLookAndFeel);
+    setLookAndFeel(&mainLF);
     
     delayGroup.setText("Delay");
     delayGroup.setTextLabelPosition(juce::Justification::horizontallyCentred);
@@ -36,8 +36,8 @@ DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
     setSize (500, 330);
 }
 
-DelayAudioProcessorEditor::~DelayAudioProcessorEditor()
-{
+DelayAudioProcessorEditor::~DelayAudioProcessorEditor() {
+    setLookAndFeel(nullptr);
 }
 
 //==============================================================================
