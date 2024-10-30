@@ -59,6 +59,9 @@ public:
                           int width, int height,
                           float sliderPos, float rotaryStartAngle, float rotaryEndAngle,
                           juce::Slider& slider) override;
+    juce::Label* createSliderTextBox(juce::Slider&) override;
+    void drawTextEditorOutline(juce::Graphics&, int, int, juce::TextEditor&) override {}
+    void fillTextEditorBackground(juce::Graphics&, int width, int height, juce::TextEditor&) override;
 private:
     juce::DropShadow dropShadow { Colors::Knob::dropShadow, 6, { 0, 3 } };
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(RotaryKnobLookAndFeel)
