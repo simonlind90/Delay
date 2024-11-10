@@ -104,6 +104,9 @@ void DelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     int maxDelayInSamples = int(std::ceil(numSamples));
     delayLine.setMaximumDelayInSamples(maxDelayInSamples);
     delayLine.reset();
+    
+    feedbackL = 0.0f;
+    feedbackR = 0.0f;
 }
 
 void DelayAudioProcessor::releaseResources()
@@ -145,15 +148,15 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
         float dryL = channelDataL[sample];
         float dryR = channelDataR[sample];
         
-        delayLine.pushSample(0, dryL);
-        delayLine.pushSample(1, dryR);
+        delayLine.pushSample(0, dryL + feedbackL);
+        delayLine.pushSample(1, dryR + feedbackR);
         
         float wetL = delayLine.popSample(0);
         float wetR = delayLine.popSample(1);
         
-        wetL += delayLine.popSample(0, delayInSamples * 2.0f, false) * 0.7f;
-        wetR += delayLine.popSample(1, delayInSamples * 2.0f, false) * 0.7f;
-        
+        feedbackL = wetL * params.feedback;
+        feedbackR = wetR * params.feedback;
+
         float mixL = dryL * (1.0f - params.mix) + wetL * params.mix;
         float mixR = dryR * (1.0f - params.mix) + wetR * params.mix;
         
