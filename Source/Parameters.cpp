@@ -106,6 +106,8 @@ void Parameters::reset() noexcept {
     mixSmoother.setCurrentAndTargetValue(mixParam->get() * 0.01f);
     feedback = 0.0f;
     feedbackSmoother.setCurrentAndTargetValue(feedbackParam->get() * 0.01f);
+    panL = 0.0f;
+    panR = 1.0f;
 }
 
 void Parameters::smoothen() noexcept {
