@@ -9,6 +9,7 @@
 */
 
 #include "Parameters.h"
+#include "DSP.h"
 
 static juce::String stringFromMilliseconds(float value, int) {
     if (value < 10.0f) {
@@ -51,6 +52,7 @@ Parameters::Parameters(juce::AudioProcessorValueTreeState& apvts) {
     castParameter(apvts, delayTimeParamID, delayTimeParam);
     castParameter(apvts, mixParamID, mixParam);
     castParameter(apvts, feedbackParamID, feedbackParam);
+    castParameter(apvts, stereoParamID, stereoParam);
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout Parameters::createParameterLayout() {
@@ -77,6 +79,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout Parameters::createParameterL
                                                            juce::NormalisableRange<float>(-100.0f, 100.0f, 1.0f),
                                                            0.0f,
                                                            juce::AudioParameterFloatAttributes().withStringFromValueFunction(stringFromPercent)));
+    layout.add(std::make_unique<juce::AudioParameterFloat>(stereoParamID,
+                                                           "Stereo",
+                                                           juce::NormalisableRange<float>(-100.0f, 100.0f, 1.0f),
+                                                           0.0f,
+                                                           juce::AudioParameterFloatAttributes()
+                                                                .withStringFromValueFunction(stringFromPercent)));
     return layout;
 }
 
@@ -88,6 +96,7 @@ void Parameters::update() noexcept {
     }
     mixSmoother.setTargetValue(mixParam->get() * 0.01f);
     feedbackSmoother.setTargetValue(feedbackParam->get() * 0.01f);
+    stereoSmoother.setTargetValue(stereoParam->get() * 0.01f);
 }
 
 void Parameters::prepareToPlay(double sampleRate) noexcept {
@@ -96,6 +105,7 @@ void Parameters::prepareToPlay(double sampleRate) noexcept {
     coeff = 1.0f - std::exp(-1.0f / (0.2f * float(sampleRate)));
     mixSmoother.reset(sampleRate, duration);
     feedbackSmoother.reset(sampleRate, duration);
+    stereoSmoother.reset(sampleRate, duration);
 }
 
 void Parameters::reset() noexcept {
@@ -108,6 +118,7 @@ void Parameters::reset() noexcept {
     feedbackSmoother.setCurrentAndTargetValue(feedbackParam->get() * 0.01f);
     panL = 0.0f;
     panR = 1.0f;
+    stereoSmoother.setCurrentAndTargetValue(stereoParam->get() * 0.01f);
 }
 
 void Parameters::smoothen() noexcept {
@@ -115,4 +126,5 @@ void Parameters::smoothen() noexcept {
     delayTime += (targetDelayTime - delayTime) * coeff;
     mix = mixSmoother.getNextValue();
     feedback = feedbackSmoother.getNextValue();
+    panningEqualPower(stereoSmoother.getNextValue(), panL, panR);
 }
