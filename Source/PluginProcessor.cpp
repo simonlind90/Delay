@@ -165,30 +165,48 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
     float* outputDataL = mainOutput.getWritePointer(0);
     float* outputDataR = mainOutput.getWritePointer(isMainOutputStereo ? 1 : 0);
     
-    for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
-        params.smoothen();
-        float delayInSamples = (params.delayTime / 1000.0f) * sampleRate;
-        delayLine.setDelay(delayInSamples);
-        
-        float dryL = inputDataL[sample];
-        float dryR = inputDataR[sample];
-        
-        float mono = (dryL + dryR) * 0.5f;
-        
-        delayLine.pushSample(0, mono * params.panL + feedbackR);
-        delayLine.pushSample(1, mono * params.panR + feedbackL);
-        
-        float wetL = delayLine.popSample(0);
-        float wetR = delayLine.popSample(1);
-        
-        feedbackL = wetL * params.feedback;
-        feedbackR = wetR * params.feedback;
-
-        float mixL = dryL * (1.0f - params.mix) + wetL * params.mix;
-        float mixR = dryR * (1.0f - params.mix) + wetR * params.mix;
-        
-        outputDataL[sample] = mixL * params.gain;
-        outputDataR[sample] = mixR * params.gain;
+    if (isMainOutputStereo) {
+        for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+            params.smoothen();
+            float delayInSamples = (params.delayTime / 1000.0f) * sampleRate;
+            delayLine.setDelay(delayInSamples);
+            
+            float dryL = inputDataL[sample];
+            float dryR = inputDataR[sample];
+            
+            float mono = (dryL + dryR) * 0.5f;
+            
+            delayLine.pushSample(0, mono * params.panL + feedbackR);
+            delayLine.pushSample(1, mono * params.panR + feedbackL);
+            
+            float wetL = delayLine.popSample(0);
+            float wetR = delayLine.popSample(1);
+            
+            feedbackL = wetL * params.feedback;
+            feedbackR = wetR * params.feedback;
+            
+            float mixL = dryL * (1.0f - params.mix) + wetL * params.mix;
+            float mixR = dryR * (1.0f - params.mix) + wetR * params.mix;
+            
+            outputDataL[sample] = mixL * params.gain;
+            outputDataR[sample] = mixR * params.gain;
+        }
+    } else {
+        for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+            params.smoothen();
+            
+            float delayInSamples = params.delayTime / 1000.0f * sampleRate;
+            delayLine.setDelay(delayInSamples);
+            
+            float dry = inputDataL[sample];
+            delayLine.pushSample(0, dry + feedbackL);
+            
+            float wet = delayLine.popSample(0);
+            feedbackL = wet * params.feedback;
+            
+            float mix = dry + wet * params.mix;
+            outputDataL[sample] = mix * params.gain;
+        }
     }
     #if JUCE_DEBUG
     protectYourEars(buffer);
