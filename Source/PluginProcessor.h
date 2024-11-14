@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "Parameters.h"
+#include "Tempo.h"
 
 //==============================================================================
 /**
@@ -59,6 +60,7 @@ public:
     };
 private:
     Parameters params;
+    Tempo tempo;
     juce::dsp::DelayLine<float, juce::dsp::DelayLineInterpolationTypes::Linear> delayLine;
     float feedbackL = 0.0f;
     float feedbackR = 0.0f;
