@@ -10,6 +10,8 @@
       <FILE id="Mu1TSr" name="Noise.png" compile="0" resource="1" file="Resources/Noise.png"/>
     </GROUP>
     <GROUP id="{5F4C6284-5714-9546-EA1E-56B608F04C06}" name="Source">
+      <FILE id="p8KEh4" name="DelayLine.cpp" compile="1" resource="0" file="Source/DelayLine.cpp"/>
+      <FILE id="fKBdVo" name="DelayLine.h" compile="0" resource="0" file="Source/DelayLine.h"/>
       <FILE id="q9lklX" name="Tempo.cpp" compile="1" resource="0" file="Source/Tempo.cpp"/>
       <FILE id="ORq6Qt" name="Tempo.h" compile="0" resource="0" file="Source/Tempo.h"/>
       <FILE id="r0lVZZ" name="DSP.h" compile="0" resource="0" file="Source/DSP.h"/>
