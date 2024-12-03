@@ -39,9 +39,22 @@ void DelayLine::write(float input) noexcept {
 float DelayLine::read(float delayInSamples) const noexcept {
     jassert(delayInSamples >= 0.0f);
     jassert(delayInSamples <= bufferLength - 1.0f);
-    int readIndex = int(std::round(writeIndex - delayInSamples));
-    if (readIndex < 0) {
-        readIndex += bufferLength;
+    
+    int integerDelay = int(delayInSamples);
+    
+    int readIndexA = writeIndex - integerDelay;
+    if (readIndexA < 0) {
+        readIndexA += bufferLength;
     }
-    return buffer[size_t(readIndex)];
+    
+    int readIndexB = readIndexA - 1;
+    if (readIndexB < 0) {
+        readIndexB += bufferLength;
+    }
+    
+    float sampleA = buffer[size_t(readIndexA)];
+    float sampleB = buffer[size_t(readIndexB)];
+    
+    float fraction = delayInSamples - float(integerDelay);
+    return sampleA + fraction * (sampleB - sampleA);
 }
