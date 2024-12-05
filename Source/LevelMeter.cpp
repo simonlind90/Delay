@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "LevelMeter.h"
+#include "LookAndFeel.h"
 
 //==============================================================================
 LevelMeter::LevelMeter(std::atomic<float>& measurementL_,
@@ -25,29 +26,25 @@ LevelMeter::~LevelMeter()
 
 void LevelMeter::paint (juce::Graphics& g)
 {
-    /* This demo code just fills the component's background and
-       draws some placeholder text to get you started.
-
-       You should replace everything in this method with your own
-       drawing code..
-    */
-
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
-
-    g.setColour (juce::Colours::grey);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-
-    g.setColour (juce::Colours::white);
-    g.setFont (juce::FontOptions (14.0f));
-    g.drawText ("LevelMeter", getLocalBounds(),
-                juce::Justification::centred, true);   // draw some placeholder text
+    const auto bounds = getLocalBounds();
+    g.fillAll(Colors::LevelMeter::background);
+    
+    g.setFont(Fonts::getFont(10.0f));
+    for (float db = maxdB; db >= mindB; db -= stepdB) {
+        int y = positionForLevel(db);
+        
+        g.setColour(Colors::LevelMeter::tickLine);
+        g.fillRect(0, y, 16, 1);
+        
+        g.setColour(Colors::LevelMeter::tickLabel);
+        g.drawSingleLineText(juce::String(int(db)), bounds.getWidth(), y + 3, juce::Justification::right);
+    }
 }
 
 void LevelMeter::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
-
+    maxPos = 4.0f;
+    minPos = float(getHeight()) - 4.0f;
 }
 
 void LevelMeter::timerCallback() {
