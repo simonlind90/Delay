@@ -13,6 +13,7 @@
 #include "Parameters.h"
 #include "RotaryKnob.h"
 #include "LookAndFeel.h"
+#include "LevelMeter.h"
 
 //==============================================================================
 /**
@@ -50,6 +51,7 @@ private:
     
     juce::GroupComponent delayGroup, feedbackGroup, outputGroup;
     MainLookAndFeel mainLF;
+    LevelMeter meter;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelayAudioProcessorEditor)
 };
