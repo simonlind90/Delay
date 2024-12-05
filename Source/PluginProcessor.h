@@ -60,6 +60,7 @@ public:
         *this, nullptr, "Parameters", Parameters::createParameterLayout()
     };
     Parameters params;
+    std::atomic<float> levelL, levelR;
 private:
     Tempo tempo;
     DelayLine delayLineL, delayLineR;
