@@ -120,8 +120,8 @@ void DelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     lastLowCut = -1.0f;
     lastHighCut = -1.0f;
     
-    levelL.store(0.0f);
-    levelR.store(0.0f);
+    levelL.reset();
+    levelR.reset();
 }
 
 void DelayAudioProcessor::releaseResources()
@@ -264,8 +264,8 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
             maxR = std::max(maxR, std::abs(out));
         }
     }
-    levelL = maxL;
-    levelR = maxR;
+    levelL.updateIfGreater(maxL);
+    levelR.updateIfGreater(maxR);
     
     #if JUCE_DEBUG
     protectYourEars(buffer);
