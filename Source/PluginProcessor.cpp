@@ -122,6 +122,17 @@ void DelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     
     levelL.reset();
     levelR.reset();
+    
+    delayInSamples = 0.0f;
+    targetDelay = 0.0f;
+    
+    fade = 1.0f;
+    fadeTarget = 1.0f;
+    
+    coeff = 1.0 - std::exp(-1.0f / (0.05f * float(sampleRate)));
+    
+    wait = 0.0f;
+    waitInc = 1.0f / (0.3f * float(sampleRate)); // 300ms
 }
 
 void DelayAudioProcessor::releaseResources()
@@ -191,7 +202,17 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
         for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
             params.smoothen();
             float delayTime = params.tempoSync ? syncedTime : params.delayTime;
-            float delayInSamples = (delayTime / 1000.0f) * sampleRate;
+            float newTargetDelay = (delayTime / 1000.0f) * sampleRate;
+            
+            if (newTargetDelay != targetDelay) {
+                targetDelay = newTargetDelay;
+                if (delayInSamples == 0.0f) { // First time
+                    delayInSamples = targetDelay;
+                } else {
+                    wait = waitInc; // start counter
+                    fadeTarget = 0.0f; // fade out
+                }
+            }
             
             if (params.lowCut != lastLowCut) {
                 lowCutFilter.setCutoffFrequency(params.lowCut);
@@ -212,6 +233,20 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
             
             float wetL = delayLineL.read(delayInSamples);
             float wetR = delayLineR.read(delayInSamples);
+            
+            fade += (fadeTarget - fade) * coeff;
+            
+            wetL *= fade;
+            wetR *= fade;
+            
+            if (wait > 0.0f) {
+                wait += waitInc;
+                if (wait >= 1.0f) {
+                    delayInSamples = targetDelay;
+                    wait = 0.0f;
+                    fadeTarget = 1.0f; // fade in
+                }
+            }
             
             feedbackL = wetL * params.feedback;
             feedbackL = lowCutFilter.processSample(0, feedbackL);
@@ -237,7 +272,17 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
         for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
             params.smoothen();
             
-            float delayInSamples = params.delayTime / 1000.0f * sampleRate;
+            float newTargetDelay = params.delayTime / 1000.0f * sampleRate;
+            
+            if (newTargetDelay != targetDelay) {
+                targetDelay = newTargetDelay;
+                if (delayInSamples == 0.0f) { // First time
+                    delayInSamples = targetDelay;
+                } else {
+                    wait = waitInc; // start counter
+                    fadeTarget = 0.0f; // fade out
+                }
+            }
             
             if (params.lowCut != lastLowCut) {
                 lowCutFilter.setCutoffFrequency(params.lowCut);
@@ -251,7 +296,19 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
             float dry = inputDataL[sample];
             delayLineL.write(dry + feedbackR);
             
-            float wet = delayLineL.read(delayInSamples);;
+            float wet = delayLineL.read(delayInSamples);
+            
+            wet *= fade;
+            
+            if (wait > 0.0f) {
+                wait += waitInc;
+                if (wait >= 1.0f) {
+                    delayInSamples = targetDelay;
+                    wait = 0.0f;
+                    fadeTarget = 1.0f; // fade in
+                }
+            }
+            
             feedbackL = wet * params.feedback;
             feedbackL = lowCutFilter.processSample(0, feedbackL);
             feedbackL = highCutFilter.processSample(0, feedbackL);
