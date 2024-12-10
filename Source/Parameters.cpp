@@ -194,7 +194,7 @@ void Parameters::reset() noexcept {
 
 void Parameters::smoothen() noexcept {
     gain = gainSmoother.getNextValue();
-    delayTime = targetDelayTime;
+    delayTime += (targetDelayTime - delayTime) * coeff;
     mix = mixSmoother.getNextValue();
     feedback = feedbackSmoother.getNextValue();
     panningEqualPower(stereoSmoother.getNextValue(), panL, panR);
