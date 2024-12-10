@@ -5,6 +5,7 @@
               companyWebsite="https://www.EternalArt.se">
   <MAINGROUP id="ZurFCL" name="Delay">
     <GROUP id="{932197B2-7C39-87B5-687A-9AB8DE5768F6}" name="Assets">
+      <FILE id="i891TE" name="Bypass.png" compile="0" resource="1" file="Resources/Bypass.png"/>
       <FILE id="tPyX6N" name="Lato-Medium.ttf" compile="0" resource="1" file="../../../Audio Programming/getting-started-book/Resources/Lato-Medium.ttf"/>
       <FILE id="phMNcc" name="Logo.png" compile="0" resource="1" file="Resources/Logo.png"/>
       <FILE id="Mu1TSr" name="Noise.png" compile="0" resource="1" file="Resources/Noise.png"/>

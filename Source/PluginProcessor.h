@@ -62,6 +62,7 @@ public:
     };
     Parameters params;
     Measurement levelL, levelR;
+    juce::AudioProcessorParameter* getBypassParameter() const override;
 private:
     Tempo tempo;
     DelayLine delayLineL, delayLineR;

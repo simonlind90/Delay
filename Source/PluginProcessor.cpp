@@ -262,6 +262,11 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
             float outL = mixL * params.gain;
             float outR = mixR * params.gain;
             
+            if (params.bypassed) {
+                outL = dryL;
+                outR = dryR;
+            }
+            
             outputDataL[sample] = outL;
             outputDataR[sample] = outR;
             
@@ -315,6 +320,9 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
             
             float mix = dry + wet * params.mix;
             float out = mix * params.gain;
+            if (params.bypassed) {
+                out = dry;
+            }
             
             outputDataL[sample] = out;
             maxL = std::max(maxL, std::abs(out));
@@ -327,6 +335,10 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
     #if JUCE_DEBUG
     protectYourEars(buffer);
     #endif
+}
+
+juce::AudioProcessorParameter* DelayAudioProcessor::getBypassParameter() const {
+    return params.bypassParam;
 }
 
 //==============================================================================
